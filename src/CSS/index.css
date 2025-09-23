@@ -1,0 +1,9 @@
+#hero{
+  border-radius: 20px;
+}
+@media screen and (max-width:768px) {
+  #hero{
+    width: 300px;
+    height:auto;
+  }
+}
