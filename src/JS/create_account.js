@@ -1,5 +1,6 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../CSS/global.css';
+import '../CSS/create_account.css';
 import axios from 'axios';
 
 const enBtn = document.getElementById('enBtn');
