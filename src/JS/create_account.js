@@ -35,7 +35,7 @@ function updateSelect(selectEl, options) {
   options.forEach(optText => {
     const opt = document.createElement('option');
     opt.textContent = optText;
-    opt.value = optText === options[0] ? "" : optText; // اجعل أول خيار فارغ
+    opt.value = optText === options[0] ? "" : optText;
     selectEl.appendChild(opt);
   });
 }

@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        createAccount: resolve(__dirname, 'public/pages/create_account.html'
+        createAccount: resolve(__dirname, 'public/pages/create_account.html')
       },
     },
   },
