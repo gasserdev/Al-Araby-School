@@ -1,5 +1,8 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 @import url("index.css");
+@import url("create_account.css");
 *{
     font-family:"Cairo", sans-serif;;
 }
@@ -17,7 +20,7 @@
   background-color:rgb(178, 174, 174) !important ;
 }
 .btn-primary:hover{
-  background-color: #1193d4 !important;   /* الأزرق اللي اخترته */
+  background-color: #1193d9 !important;
   border-color: #1193d4 !important;
   color: #fff !important;
 }

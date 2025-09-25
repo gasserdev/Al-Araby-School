@@ -1,6 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../CSS/global.css';
 import axios from 'axios';
 const translations = {
@@ -26,7 +24,6 @@ const arBtn = document.getElementById("arBtn");
 const enBtn = document.getElementById("enBtn");
 
 function changeLang(lang) {
-  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
@@ -36,5 +33,4 @@ function changeLang(lang) {
 
 arBtn.addEventListener("click", () => changeLang("ar"));
 enBtn.addEventListener("click", () => changeLang("en"));
-
 changeLang("ar");
