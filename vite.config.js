@@ -1,15 +1,15 @@
-import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  root: 'public',
+  root: "public",
   build: {
-    outDir: '../dist',
+    outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        createAccount: resolve(__dirname, 'public/pages/create_account.html')
+        main: resolve(__dirname, "public/index.html"),
+        createAccount: resolve(__dirname, "public/pages/create_account.html"),
       },
     },
   },
