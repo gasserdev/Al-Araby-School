@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,14 +9,14 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="../index.html" data-i18n="brand">مدرسة العربي</a>
+          <a class="navbar-brand fw-bold" href="/index.html" data-i18n="brand">مدرسة العربي</a>
 
           <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="offcanvas offcanvas-end"  tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header justify-content-between">
               <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="brand">
                 مدرسة العربي
@@ -27,7 +27,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
                 <li class="nav-item">
-                  <a href="../index.html" class="nav-link btn text-primary " data-i18n="home" style="width:100px;">الرئيسية</a>
+                  <a href="/index.html" class="nav-link btn text-primary" data-i18n="home" style="width:100px;">الرئيسية</a>
                 </li>
                 <li class="nav-item">
                   <button id="enBtn" class="nav-link active btn" style="width:110px;">English</button>
@@ -36,7 +36,7 @@
                   <button id="arBtn" class="nav-link active btn" style="width:110px;">العربية</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link active btn btn-primary" data-i18n="login" >تسجيل دخول</button>
+                  <button class="nav-link active btn btn-primary" data-i18n="login">تسجيل دخول</button>
                 </li>
               </ul>
             </div>
@@ -51,31 +51,31 @@
         <form>
           <div class="mb-3">
             <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
-            <input type="text" class="form-control" id="fullName"  required placeholder="أدخل اسمك الكامل">
+            <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
           </div>
 
           <div class="mb-3">
-            <label class="form-label" for="password"  data-i18n="password">كلمة المرور</label>
+            <label class="form-label" for="password" data-i18n="password">كلمة المرور</label>
             <input type="password" class="form-control" minlength="8" required id="password" placeholder="أدخل كلمة المرور">
           </div>
 
           <div class="mb-3">
             <label class="form-label" for="role" data-i18n="role">الدور</label>
-            <select class="form-select" required name="role">
-              <option selected disabled>اختر الدور</option>
-              <option>طالب</option>
-              <option>مدرس</option>
-              <option>مشرف</option>
+            <select class="form-select" id="role" required>
+              <option value="" selected disabled>اختر الدور</option>
+              <option value="طالب">طالب</option>
+              <option value="مدرس">مدرس</option>
+              <option value="مشرف">مشرف</option>
             </select>
           </div>
 
           <div class="mb-3">
             <label class="form-label" for="grade" data-i18n="grade">السنة الدراسية</label>
-            <select class="form-select" required name="grade">
-              <option selected disabled>اختر السنة الدراسية</option>
-              <option>الأولى</option>
-              <option>الثانية</option>
-              <option>الثالثة</option>
+            <select class="form-select" id="grade" required>
+              <option value="" selected disabled>اختر السنة الدراسية</option>
+              <option value="الأولى">الأولى</option>
+              <option value="الثانية">الثانية</option>
+              <option value="الثالثة">الثالثة</option>
             </select>
           </div>
 
@@ -84,6 +84,6 @@
       </div>
     </main>
 
-    <script type="module" src="../../src/JS/create_account.js"></script>
+    <script type="module" src="/src/JS/create_account.js"></script>
   </body>
 </html>

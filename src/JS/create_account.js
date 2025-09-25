@@ -1,6 +1,6 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../CSS/global.css';
-import '../CSS/create_account.css';
+import '/src/CSS/global.css';
+import '/src/CSS/create_account.css';
 import axios from 'axios';
 
 const enBtn = document.getElementById('enBtn');
@@ -32,10 +32,11 @@ const translations = {
 function updateSelect(selectEl, options) {
   if (!selectEl) return;
   selectEl.innerHTML = '';
-  options.forEach(optText => {
+  options.forEach((optText, index) => {
     const opt = document.createElement('option');
     opt.textContent = optText;
-    opt.value = optText === options[0] ? "" : optText;
+    opt.value = index === 0 ? "" : optText;
+    if (index === 0) opt.disabled = true;
     selectEl.appendChild(opt);
   });
 }
@@ -43,6 +44,8 @@ function updateSelect(selectEl, options) {
 function setLanguage(newLang) {
   lang = newLang;
   document.title = translations.title[lang];
+
+  document.documentElement.lang = lang;
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -59,20 +62,29 @@ function setLanguage(newLang) {
   if (submitBtn) submitBtn.textContent = translations.createAccount[lang];
 }
 
-enBtn.addEventListener('click', () => setLanguage('en'));
-arBtn.addEventListener('click', () => setLanguage('ar'));
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const fullName = fullNameInput.value.trim();
-  const password = passwordInput.value.trim();
-  const role = document.querySelector('select[name="role"]').value;
-  const grade = document.querySelector('select[name="grade"]').value;
-
-  if (!fullName || !password || role === "" || grade === "") {
-    alert(translations.fillAllFields[lang]);
-    return;
-  };
-  const user = { fullName, password, role, grade };
-  localStorage.setItem('user', JSON.stringify(user));
+document.addEventListener('DOMContentLoaded', () => {
+  setLanguage('ar');
 });
+
+if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
+if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));
+
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fullName = fullNameInput.value.trim();
+    const password = passwordInput.value.trim();
+    const role = document.querySelector('select[name="role"]').value;
+    const grade = document.querySelector('select[name="grade"]').value;
+
+    if (!fullName || !password || role === "" || grade === "") {
+      alert(translations.fillAllFields[lang]);
+      return;
+    }
+
+    const user = { fullName, password, role, grade };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    window.location.href = 'index.html';
+  });
+}
