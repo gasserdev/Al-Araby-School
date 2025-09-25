@@ -1,0 +1,11 @@
+@media screen and (max-width: 768px) {
+  #offcanvasNavbar .offcanvas-body {
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  #offcanvasNavbar .navbar-nav {
+    justify-content: flex-start !important;
+    flex-direction: column !important;      
+  }
+}
