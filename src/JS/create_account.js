@@ -13,16 +13,16 @@ export default function initCreateAccount() {
   const gradeWrapper = document.getElementById('grade-wrapper');
   const gradeSelect = document.getElementById('grade');
 
-  if (!form) return; 
+  if (!form) return;
 
   let lang = 'ar';
 
   const translations = {
     title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
-    heading: { en: "Create Account", ar: "إنشاء حساب" },
+    heading: { en: "Al-Arabi School", ar: "مدرسة العربي للتكنولوجيا التطبيقية"},
     fullName: { en: "Full Name", ar: "الاسم الكامل" },
     password: { en: "Password", ar: "كلمة المرور" },
-    roleOptions: { en: ["Select Role", "Student", "Teacher"], ar:["اختر الدور", "طالب", "مدرس"]  },
+    roleOptions: { en: ["Select Role", "Student", "Teacher"], ar:["اختر الدور", "طالب", "مُعلم"]},
     gradeOptions: { en: ["Select Grade", "First", "Second", "Third"], ar: ["اختر السنة الدراسية", "الأولى", "الثانية", "الثالثة"] },
     createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
     placeholder: {
@@ -31,7 +31,12 @@ export default function initCreateAccount() {
       role: { en: "Select Role", ar: "اختر الدور" },
       grade: { en: "Select Grade", ar: "اختر السنة الدراسية" }
     },
-    fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' }
+    fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' },
+    login:{en:"Login",ar:"تسجيل دخول"},
+    createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
+    arabic:{en:"Arabic",ar:"العربية"},
+    english:{en:"English",ar:"الأنجليزية"},
+    home:{en:"Home",ar:"الرئيسية"}
   };
 
   function updateSelect(selectEl, options) {
@@ -70,7 +75,7 @@ export default function initCreateAccount() {
   if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));
 
   roleSelect.addEventListener('change', () => {
-    if (roleSelect.value === "مدرس" || roleSelect.value === "Teacher") {
+    if (roleSelect.value === "مُعلم" || roleSelect.value === "Teacher") {
       gradeWrapper.style.display = 'none';
     } else {
       gradeWrapper.style.display = 'block';
