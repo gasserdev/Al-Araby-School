@@ -3,88 +3,97 @@ import '/src/CSS/global.css';
 import '/src/CSS/create_account.css';
 import axios from 'axios';
 
-const enBtn = document.getElementById('enBtn');
-const arBtn = document.getElementById('arBtn');
-const form = document.querySelector('form');
-const fullNameInput = document.getElementById('fullName');
-const passwordInput = document.getElementById('password');
+export default function initCreateAccount() {
+  const enBtn = document.getElementById('enBtn');
+  const arBtn = document.getElementById('arBtn');
+  const form = document.querySelector('form#createForm');
+  const fullNameInput = document.getElementById('fullName');
+  const passwordInput = document.getElementById('password');
+  const roleSelect = document.getElementById('role');
+  const gradeWrapper = document.getElementById('grade-wrapper');
+  const gradeSelect = document.getElementById('grade');
 
-let lang = 'ar';
+  if (!form) return; // لو الصفحة مش create account
 
-const translations = {
-  title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
-  brand: { en: "Al-Arabi School", ar: "مدرسة العربي" },
-  heading: { en: "Create Account", ar: "إنشاء حساب" },
-  fullName: { en: "Full Name", ar: "الاسم الكامل" },
-  password: { en: "Password", ar: "كلمة المرور" },
-  role: { en: "Role", ar: "الدور" },
-  roleOptions: { en: ["Select Role", "Student", "Teacher", "Supervisor"], ar: ["اختر الدور", "طالب", "مدرس", "مشرف"] },
-  grade: { en: "Grade", ar: "السنة الدراسية" },
-  gradeOptions: { en: ["Select Grade", "First", "Second", "Third"], ar: ["اختر السنة الدراسية", "الأولى", "الثانية", "الثالثة"] },
-  createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
-  placeholder: {
-    fullName: { en: "Enter your full name", ar: "أدخل اسمك الكامل" },
-    password: { en: "Enter your password", ar: "أدخل كلمة المرور" }
-  },
-  fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' }
-};
+  let lang = 'ar';
 
-function updateSelect(selectEl, options) {
-  if (!selectEl) return;
-  selectEl.innerHTML = '';
-  options.forEach((optText, index) => {
-    const opt = document.createElement('option');
-    opt.textContent = optText;
-    opt.value = index === 0 ? "" : optText;
-    if (index === 0) opt.disabled = true;
-    selectEl.appendChild(opt);
-  });
-}
+  const translations = {
+    title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
+    heading: { en: "Create Account", ar: "إنشاء حساب" },
+    fullName: { en: "Full Name", ar: "الاسم الكامل" },
+    password: { en: "Password", ar: "كلمة المرور" },
+    roleOptions: { en: ["Select Role", "Student", "Teacher"], ar:["اختر الدور", "طالب", "مدرس"]  },
+    gradeOptions: { en: ["Select Grade", "First", "Second", "Third"], ar: ["اختر السنة الدراسية", "الأولى", "الثانية", "الثالثة"] },
+    createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
+    placeholder: {
+      fullName: { en: "Enter your full name", ar: "أدخل اسمك الكامل" },
+      password: { en: "Enter your password", ar: "أدخل كلمة المرور" },
+      role: { en: "Select Role", ar: "اختر الدور" },
+      grade: { en: "Select Grade", ar: "اختر السنة الدراسية" }
+    },
+    fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' }
+  };
 
-function setLanguage(newLang) {
-  lang = newLang;
-  document.title = translations.title[lang];
+  function updateSelect(selectEl, options) {
+    if (!selectEl) return;
+    selectEl.innerHTML = '';
+    options.forEach((optText, index) => {
+      const opt = document.createElement('option');
+      opt.textContent = optText;
+      opt.value = index === 0 ? "" : optText;
+      if (index === 0) opt.disabled = true;
+      selectEl.appendChild(opt);
+    });
+    selectEl.selectedIndex = 0;
+  }
 
-  document.documentElement.lang = lang;
+  function setLanguage(newLang) {
+    lang = newLang;
+    document.title = translations.title[lang];
+    document.documentElement.lang = lang;
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (translations[key]) el.textContent = translations[key][lang];
-  });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[key]) el.textContent = translations[key][lang];
+    });
 
-  if (fullNameInput) fullNameInput.placeholder = translations.placeholder.fullName[lang];
-  if (passwordInput) passwordInput.placeholder = translations.placeholder.password[lang];
+    if (fullNameInput) fullNameInput.placeholder = translations.placeholder.fullName[lang];
+    if (passwordInput) passwordInput.placeholder = translations.placeholder.password[lang];
 
-  updateSelect(document.querySelector('select[name="role"]'), translations.roleOptions[lang]);
-  updateSelect(document.querySelector('select[name="grade"]'), translations.gradeOptions[lang]);
+    updateSelect(roleSelect, translations.roleOptions[lang]);
+    updateSelect(gradeSelect, translations.gradeOptions[lang]);
+  }
 
-  const submitBtn = document.querySelector('button[type="submit"]');
-  if (submitBtn) submitBtn.textContent = translations.createAccount[lang];
-}
-
-document.addEventListener('DOMContentLoaded', () => {
   setLanguage('ar');
-});
 
-if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
-if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));
+  if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
+  if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));
 
-if (form) {
+  roleSelect.addEventListener('change', () => {
+    if (roleSelect.value === "مدرس" || roleSelect.value === "Teacher") {
+      gradeWrapper.style.display = 'none';
+    } else {
+      gradeWrapper.style.display = 'block';
+    }
+  });
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const fullName = fullNameInput.value.trim();
     const password = passwordInput.value.trim();
-    const role = document.querySelector('select[name="role"]').value;
-    const grade = document.querySelector('select[name="grade"]').value;
+    const role = roleSelect.value;
+    const grade = gradeSelect.value;
 
-    if (!fullName || !password || role === "" || grade === "") {
+    if (!fullName || !password || role === "" || (role !== "مدرس" && role !== "Teacher" && grade === "")) {
       alert(translations.fillAllFields[lang]);
       return;
     }
 
-    const user = { fullName, password, role, grade };
+    const user = { fullName, password, role, grade: (role === "مدرس" || role === "Teacher") ? null : grade };
     localStorage.setItem('user', JSON.stringify(user));
 
-    window.location.href = 'index.html';
+    alert(lang === 'ar' ? 'تم إنشاء الحساب بنجاح!' : 'Account created successfully!');
+    form.reset();
+    gradeWrapper.style.display = 'block';
   });
 }

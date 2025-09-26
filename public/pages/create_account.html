@@ -48,7 +48,7 @@
     <main>
       <div class="container">
         <h3 class="text-center mb-4 fw-bold" data-i18n="heading">إنشاء حساب</h3>
-        <form>
+        <form id="createForm">
           <div class="mb-3">
             <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
             <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
@@ -65,13 +65,12 @@
               <option value="" selected disabled>اختر الدور</option>
               <option value="طالب">طالب</option>
               <option value="مدرس">مدرس</option>
-              <option value="مشرف">مشرف</option>
             </select>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3" id="grade-wrapper">
             <label class="form-label" for="grade" data-i18n="grade">السنة الدراسية</label>
-            <select class="form-select" id="grade" required>
+            <select class="form-select" id="grade" >
               <option value="" selected disabled>اختر السنة الدراسية</option>
               <option value="الأولى">الأولى</option>
               <option value="الثانية">الثانية</option>
