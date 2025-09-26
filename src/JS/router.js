@@ -56,7 +56,7 @@ const showCreateAccount = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="brand">مدرسة العربي</a>
+        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="brand">مدرسة العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
