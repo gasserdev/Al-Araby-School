@@ -6,7 +6,7 @@ const showHome = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#" data-link data-i18n="brand">مدرسة العربي</a>
+        <a class="navbar-brand fw-bold" href="#" data-link data-i18n="brand">مدرسة العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@ const showHome = async () => {
     <div class="container w-100">
       <div class="d-flex justify-content-center gap-3 align-items-center flex-column">
         <div class="d-flex flex-column justify-content-center text-center mt-5 align-content-center">
-          <h2 class="fs-2" data-i18n="welcome">مرحبا إلى مدرسة العربي</h2>
+          <h2 class="fs-2" data-i18n="welcome">مرحبا بك في مدرسة العربي</h2>
           <p class="fs-5" data-i18n="desc">بوابتك إلى النمو والتعلم</p>
         </div>
         <img id="hero" src="/assets/images/hero.png" alt="صورة توضيحية لمدرسة العربي" />
