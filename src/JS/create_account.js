@@ -13,7 +13,7 @@ export default function initCreateAccount() {
   const gradeWrapper = document.getElementById('grade-wrapper');
   const gradeSelect = document.getElementById('grade');
 
-  if (!form) return; // لو الصفحة مش create account
+  if (!form) return; 
 
   let lang = 'ar';
 
