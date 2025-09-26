@@ -5,8 +5,8 @@ import '../CSS/global.css';
 const translations = {
   ar: {
     title: "مدرسة العربي",
-    brand: "مدرسة العربي",
-    welcome: "مرحبا إلى مدرسة العربي",
+    brand: "مدرسة العربي للتكنولوجيا التطبيقية",
+    welcome: "مرحبا بك في مدرسة العربي",
     desc: "بوابتك إلى النمو والتعلم",
     signin: "تسجيل دخول",
     create: "حساب جديد",
