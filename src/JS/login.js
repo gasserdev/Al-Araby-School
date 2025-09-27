@@ -15,7 +15,7 @@ export default function initLogin() {
 
   const translations = {
     title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
-    heading: { en: "Al-Arabi School", ar: "مدرسة العربي للتكنولوجيا التطبيقية" },
+    heading: { en: "Al-Arabi School", ar: "العربي للتكنولوجيا التطبيقية" },
     fullName: { en: "Full Name", ar: "الاسم الكامل" },
     password: { en: "Password", ar: "كلمة المرور" },
     login: { en: "Login", ar: "تسجيل دخول"},

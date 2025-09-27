@@ -22,10 +22,10 @@ const showHome = async () => {
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
               <li class="nav-item">
-                <button id="enBtn" class="nav-link active btn btn-light" onclick='changeLang("en")'>English</button>
+                <button id="enBtn" class="nav-link active btn btn-light">English</button>
               </li>
               <li class="nav-item">
-                <button id="arBtn" class="nav-link active btn btn-primary" onclick='changeLang("en")''>العربية</button>
+                <button id="arBtn" class="nav-link active btn btn-primary" >العربية</button>
               </li>
             </ul>
           </div>
