@@ -15,7 +15,7 @@ export default function initCreateAccount() {
 
   if (!form) return;
 
-  let lang = 'ar';
+  let lang = "ar";
 
   const translations = {
     title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
@@ -54,6 +54,8 @@ export default function initCreateAccount() {
 
   function setLanguage(newLang) {
     lang = newLang;
+    localStorage.setItem('lang', lang);
+
     document.title = translations.title[lang];
     document.documentElement.lang = lang;
 
@@ -69,7 +71,8 @@ export default function initCreateAccount() {
     updateSelect(gradeSelect, translations.gradeOptions[lang]);
   }
 
-  setLanguage('ar');
+  const savedLang = localStorage.getItem('lang') || 'ar';
+  setLanguage(savedLang);
 
   if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
   if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));

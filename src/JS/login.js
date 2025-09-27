@@ -35,6 +35,7 @@ export default function initLogin() {
 
   function setLanguage(newLang) {
     lang = newLang;
+    localStorage.setItem('lang', lang);
     document.title = translations.title[lang];
     document.documentElement.lang = lang;
 
@@ -47,7 +48,8 @@ export default function initLogin() {
     if (passwordInput) passwordInput.placeholder = translations.placeholder.password[lang];
   }
 
-  setLanguage('ar');
+  const savedLang = localStorage.getItem('lang') || 'ar';
+  setLanguage(savedLang);
 
   if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
   if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));

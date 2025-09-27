@@ -49,7 +49,7 @@ const showHome = async () => {
     </div>
   </main>
   `;
-  await import("/src/JS/main.js");
+  await import("/src/JS/main.js").then(module => module.default());
 };
 
 const showCreateAccount = async () => {
