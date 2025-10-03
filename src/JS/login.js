@@ -65,6 +65,7 @@ export default function initLogin() {
 
     const user = { fullName, password};
     localStorage.setItem('user', JSON.stringify(user));
+    window.location.href = '/student_dashboard';
 
   });
 }

@@ -1,7 +1,7 @@
 import page from 'page';
-import axios from 'axios';
 
 const app = document.getElementById('app');
+
 const showHome = async () => {
   app.innerHTML = `
   <header>
@@ -22,10 +22,10 @@ const showHome = async () => {
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
               <li class="nav-item">
-                <button id="enBtn" class="nav-link active btn btn-light" onclick='changeLang("en")'>English</button>
+                <button id="enBtn" class="nav-link active btn btn-light">English</button>
               </li>
               <li class="nav-item">
-                <button id="arBtn" class="nav-link active btn btn-primary" onclick='changeLang("en")''>العربية</button>
+                <button id="arBtn" class="nav-link active btn btn-primary">العربية</button>
               </li>
             </ul>
           </div>
@@ -57,7 +57,7 @@ const showCreateAccount = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="heading">مدرسة العربي للتكنولوجيا التطبيقية</a>
+        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="title"> العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -128,64 +128,157 @@ const showCreateAccount = async () => {
 
 const showLogin = async ()=>{
   app.innerHTML = `
-    <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="/" data-link data-i18n="heading">مدرسة العربي للتكنولوجيا التطبيقية</a>
-          <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header justify-content-between">
-              <h5 data-i18n="heading" class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="brand">
-                مدرسة العربي
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
-                <li class="nav-item">
-                  <a href="/" class="nav-link btn text-primary" data-link data-i18n="home" style="width:100px;">الرئيسية</a>
-                </li>
-                <li class="nav-item">
-                  <button id="enBtn" class="nav-link active btn" style="width:110px;" data-i18n="english">English</button>
-                </li>
-                <li class="nav-item">
-                  <button id="arBtn" class="nav-link active btn" data-i18n="arabic" style="width:110px;">العربية</button>
-                </li>
-                <li class="nav-item">
-                  <a href="/create_account" data-link class="nav-link active btn btn-primary" data-i18n="createAccount">حساب جديد </a>
-                </li>
-              </ul>
-            </div>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="heading">مدرسة العربي للتكنولوجيا التطبيقية</a>
+        <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header justify-content-between">
+            <h5 data-i18n="heading" class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="brand">
+              مدرسة العربي
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
+              <li class="nav-item">
+                <a href="/" class="nav-link btn text-primary" data-link data-i18n="home" style="width:100px;">الرئيسية</a>
+              </li>
+              <li class="nav-item">
+                <button id="enBtn" class="nav-link active btn" style="width:110px;" data-i18n="english">English</button>
+              </li>
+              <li class="nav-item">
+                <button id="arBtn" class="nav-link active btn" data-i18n="arabic" style="width:110px;">العربية</button>
+              </li>
+              <li class="nav-item">
+                <a href="/create_account" data-link class="nav-link active btn btn-primary" data-i18n="createAccount">حساب جديد </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </nav>
-    </header>
-    <main>
-      <div class="container">
-        <h3 class="text-center mb-4 fw-bold"  data-i18n="login">إنشاء حساب</h3>
-        <form id="createForm">
-          <div class="mb-3">
-            <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
-            <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
-          </div>
-          <div class="mb-3">
-            <label class="form-label" for="password" data-i18n="password">كلمة المرور</label>
-            <input type="password" class="form-control" minlength="8" required id="password" placeholder="أدخل كلمة المرور">
-          </div>
-          <button type="submit" class="btn btn-primary w-100" data-i18n="login">تسجيل دخول</button>
-        </form>
       </div>
-    </main>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+      <h3 class="text-center mb-4 fw-bold"  data-i18n="login">تسجيل دخول</h3>
+      <form id="createForm">
+        <div class="mb-3">
+          <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
+          <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password" data-i18n="password">كلمة المرور</label>
+          <input type="password" class="form-control" minlength="8" required id="password" placeholder="أدخل كلمة المرور">
+        </div>
+        <button type="submit" class="btn btn-primary w-100" data-i18n="login">تسجيل دخول</button>
+      </form>
+    </div>
+  </main>
   `
   await import("/src/JS/login.js").then(module => module.default());
 }
 
+const showStudentDashboard = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user) {
+        page.redirect('/login');
+        return;
+    }
+
+    app.innerHTML = `
+    <div class="container-fluid">
+
+      <button id="sidebarMobileBtn" class="btn btn-primary my-3 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+        ☰ القائمة
+      </button>
+
+      <div class="row min-vh-100">
+
+        <div class="col-md-3 col-lg-2 d-none d-md-flex flex-column border-end pe-0">
+          <div class="p-3 d-flex flex-column justify-content-between" style="min-height:700px;">
+            <nav class="nav flex-column gap-2">
+              <h5 class="mb-3">مدرسة العربي</h5>
+              <a href="#" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
+              <a href="#" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-end d-md-none" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+          <div class="offcanvas-header p-2 d-flex align-items-center justify-content-between">
+            <h5 class="offcanvas-title mb-0" id="sidebarOffcanvasLabel">مدرسة العربي</h5>
+            <button type="button" class="btn-close m-0 p-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body d-flex flex-column justify-content-between">
+            <nav class="nav flex-column gap-2">
+              <a href="#" class="nav-link"><i class="fas fa-chalkboard"></i> الحصص</a>
+              <a href="#" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-9 col-lg-10">
+          <div class="p-4">
+            <h1 class="fw-bold fs-2 mb-3">لوحة الطالب</h1>
+            <h2 class="fw-bold fs-4 mb-4">مرحبا ${user.fullName}</h2>
+
+            <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
+              <div class="col">
+                <div class="card card-custom">
+                  <div class="card-body">
+                    <h5 class="fw-bold">رياضيات</h5>
+                    <p class="text-muted">مدرس: أستاذ علي</p>
+                    <p class="text-muted">موعد الحصة: السبت 10:00 - 11:00</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card card-custom">
+                  <div class="card-body">
+                    <h5 class="fw-bold">فيزياء</h5>
+                    <p class="text-muted">مدرس: أستاذة ليلى</p>
+                    <p class="text-muted">موعد الحصة: السبت 11:30 - 12:30</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card card-custom">
+                  <div class="card-body">
+                    <h5 class="fw-bold">لغة عربية</h5>
+                    <p class="text-muted">مدرس: أستاذ سامي</p>
+                    <p class="text-muted">موعد الحصة: الأحد 10:00 - 11:00</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card card-custom">
+                  <div class="card-body">
+                    <h5 class="fw-bold">لغة إنجليزية</h5>
+                    <p class="text-muted">مدرس: أستاذة نور</p>
+                    <p class="text-muted">موعد الحصة: الأحد 11:30 - 12:30</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+    await import("/src/JS/student_dashboard.js").then(module => module.default());
+};
 page('/', () => showHome());
 page('/create_account', () => showCreateAccount());
 page('/login', () => showLogin());
+page('/student_dashboard', () => showStudentDashboard());
 
 document.addEventListener('click', e => {
   const link = e.target.closest('a[data-link]');

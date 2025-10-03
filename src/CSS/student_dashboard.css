@@ -1,0 +1,86 @@
+body {
+   font-family: "Public Sans", "Noto Sans", sans-serif;
+   background: #fff;
+ }
+ .btn-primary {
+   background-color: #1193d4;
+   color: #fff;
+   font-weight: bold;
+   transition: background-color 0.3s, transform 0.2s;
+   border: none;
+   color: white;
+
+ }
+
+ .btn-primary:hover,
+ .btn-primary:focus {
+   background-color: #0d7bbd; /* لون أغمق عند hover */
+   color: #fff;
+   text-decoration: none;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+   border: none;
+
+ }
+
+ .btn-primary:active {
+   background-color: #0a6396; /* لون أغمق عند الضغط */
+   box-shadow: none;
+   border: none;
+
+ }
+
+ .card-custom {
+   border: none;
+   border-radius: 0.75rem;
+   overflow: hidden;
+ }
+ .card-custom .card-body {
+   padding: 1rem;
+ }
+ .card-img {
+   aspect-ratio: 16/9;
+   background-size: cover;
+   background-position: center;
+   border-radius: 0.75rem;
+ }
+
+
+
+
+
+
+ body {
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+}
+.fc .fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+ @media screen and (max-width: 768px) {
+   #offcanvasNavbar .offcanvas-body {
+     direction: rtl !important;
+     text-align: right !important;
+   }
+
+   #offcanvasNavbar .navbar-nav {
+     justify-content: flex-start !important;
+     flex-direction: column !important;
+   }
+ }
+
+ @media (min-width: 768px){
+   #sidebarMobileBtn {
+     display: none;
+   }
+ }
