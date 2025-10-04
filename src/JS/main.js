@@ -5,7 +5,7 @@ export default function initHome(){
   const translations = {
     ar: {
       title: "مدرسة العربي",
-      brand: "مدرسة العربي للتكنولوجيا التطبيقية",
+      brand: " العربي للتكنولوجيا التطبيقية",
       welcome: "مرحبا بك في مدرسة العربي",
       desc: "بوابتك إلى النمو والتعلم",
       signin: "تسجيل دخول",
