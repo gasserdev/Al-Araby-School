@@ -1,9 +1,14 @@
 #hero{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("/assets/images/hero.png");
+  height: 500px;
   border-radius: 20px;
+  color: white;
+  width: 100% !important;
 }
 @media screen and (max-width:768px) {
   #hero{
     width: 300px;
+    height: 550px !important;
     height:auto;
   }
 }

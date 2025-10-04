@@ -35,12 +35,12 @@ const showHome = async () => {
   </header>
   <main>
     <div class="container w-100">
-      <div class="d-flex justify-content-center gap-3 align-items-center flex-column">
+      <div id='hero' class="d-flex justify-content-center gap-3 align-items-center flex-column">
         <div class="d-flex flex-column justify-content-center text-center mt-5 align-content-center">
           <h2 class="fs-2" data-i18n="welcome">مرحبا بك في مدرسة العربي</h2>
           <p class="fs-5" data-i18n="desc">بوابتك إلى النمو والتعلم</p>
         </div>
-        <img id="hero" src="/assets/images/hero.png" alt="صورة توضيحية لمدرسة العربي" />
+        <!-- <img id="hero" src="/assets/images/hero.png" alt="صورة توضيحية لمدرسة العربي" /> -->
         <div class="d-flex gap-2 flex-column">
           <a href="/login" class="btn btn-primary" id="signInBtn" data-i18n="signin">تسجيل دخول</a>
           <a href="/create_account" class="btn btn-light mb-2" id="createAccountBtn" data-link data-i18n="create">حساب جديد</a>
