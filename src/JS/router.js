@@ -40,7 +40,6 @@ const showHome = async () => {
           <h2 class="fs-2" data-i18n="welcome">مرحبا بك في مدرسة العربي</h2>
           <p class="fs-5" data-i18n="desc">بوابتك إلى النمو والتعلم</p>
         </div>
-        <!-- <img id="hero" src="/assets/images/hero.png" alt="صورة توضيحية لمدرسة العربي" /> -->
         <div class="d-flex gap-2 flex-column">
           <a href="/login" class="btn btn-primary" id="signInBtn" data-i18n="signin">تسجيل دخول</a>
           <a href="/create_account" class="btn btn-light mb-2" id="createAccountBtn" data-link data-i18n="create">حساب جديد</a>
@@ -116,6 +115,15 @@ const showCreateAccount = async () => {
             <option value="الأولى">الأولى</option>
             <option value="الثانية">الثانية</option>
             <option value="الثالثة">الثالثة</option>
+          </select>
+        </div>
+        <div class="mb-3" id="section-wrapper">
+          <label class="form-label" for="section" data-i18n="section">السنة الدراسية</label>
+          <select class="form-select" id="section" >
+            <option value="" selected disabled>اختر قسمك</option>
+            <option value="اداب">اداب</option>
+            <option value="فيزياء">فيزياء</option>
+            <option value="كمياء">كمياء</option>
           </select>
         </div>
         <button type="submit" class="btn btn-primary w-100" data-i18n="createAccount">إنشاء الحساب</button>

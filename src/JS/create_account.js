@@ -12,6 +12,8 @@ export default function initCreateAccount() {
   const roleSelect = document.getElementById('role');
   const gradeWrapper = document.getElementById('grade-wrapper');
   const gradeSelect = document.getElementById('grade');
+  const sectionSelect = document.getElementById('section');
+  const sectionWrapper = document.getElementById('section-wrapper');
 
   if (!form) return;
 
@@ -19,12 +21,28 @@ export default function initCreateAccount() {
 
   const translations = {
     title: { en: "Al-Arabi School", ar: "مدرسة العربي" },
-    arabic:{en:"Arabic",ar:"العربية"},
+    heading: { en: "Al-Arabi Technical School", ar: "مدرسة العربي للتكنولوجيا التطبيقية" },
+    home: { en: "Home", ar: "الرئيسية" },
+    english: { en: "English", ar: "الإنجليزية" },
+    arabic: { en: "Arabic", ar: "العربية" },
     login: { en: "Login", ar: "تسجيل دخول"},
     fullName: { en: "Full Name", ar: "الاسم الكامل" },
     password: { en: "Password", ar: "كلمة المرور" },
-    roleOptions: { en: ["Select Role", "Student", "Teacher"], ar:["اختر الدور", "طالب", "مدرس"]},
-    gradeOptions: { en: ["Select Grade", "First", "Second", "Third"], ar: ["اختر السنة الدراسية", "الأولى", "الثانية", "الثالثة"] },
+    role: { en: "Role", ar: "الدور" },
+    grade: { en: "Grade", ar: "السنة الدراسية" },
+    section: { en: "Section", ar: "القسم" },
+    roleOptions: {
+      en: ["Select Role", "Student", "Teacher"],
+      ar:["اختر الدور", "طالب", "مدرس"]
+    },
+    gradeOptions: {
+      en: ["Select Grade", "First", "Second", "Third"],
+      ar: ["اختر السنة الدراسية", "الأولى", "الثانية", "الثالثة"]
+    },
+    sectionOptions: {
+      en: ["Select Section", "Arts", "Physics", "Chemistry"],
+      ar: ["اختر قسمك", "اداب", "فيزياء", "كيمياء"]
+    },
     createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
     placeholder: {
       fullName: { en: "Enter your full name", ar: "أدخل اسمك الكامل" },
@@ -32,6 +50,7 @@ export default function initCreateAccount() {
     },
     fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' },
   };
+
 
   function updateSelect(selectEl, options) {
     if (!selectEl) return;
@@ -63,6 +82,7 @@ export default function initCreateAccount() {
 
     updateSelect(roleSelect, translations.roleOptions[lang]);
     updateSelect(gradeSelect, translations.gradeOptions[lang]);
+    updateSelect(sectionSelect, translations.sectionOptions[lang]);
   }
 
   setLanguage(lang);
@@ -85,8 +105,15 @@ export default function initCreateAccount() {
     const password = passwordInput.value.trim();
     const role = roleSelect.value;
     const grade = gradeSelect.value;
+    const section = sectionSelect.value;
 
-    if (!fullName || !password || role === "" || (role !== "مدرس" && role !== "Teacher" && grade === "")) {
+    if (
+      !fullName ||
+      !password ||
+      role === "" ||
+      (role !== "مدرس" && role !== "Teacher" && grade === "") ||
+      section === ""
+    ) {
       alert(translations.fillAllFields[lang]);
       return;
     }
@@ -95,11 +122,11 @@ export default function initCreateAccount() {
       fullName,
       password,
       role,
-      grade: (role === "مدرس" || role === "Teacher") ? null : grade
+      grade: (role === "مدرس" || role === "Teacher") ? null : grade,
+      section
     };
     localStorage.setItem('user', JSON.stringify(user));
 
-    // redirect based on role correctly
     if (role === "مدرس" || role === "Teacher") {
       window.location.href = '/';
     } else if (role === "طالب" || role === "Student") {
