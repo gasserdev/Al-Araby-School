@@ -2,7 +2,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '/src/CSS/global.css';
 import '/src/CSS/create_account.css';
 import axios from 'axios';
+
 export default function initLogin() {
+
   const enBtn = document.getElementById('enBtn');
   const arBtn = document.getElementById('arBtn');
   const form = document.querySelector('form#createForm');
@@ -18,20 +20,14 @@ export default function initLogin() {
     heading: { en: "Al-Arabi School", ar: "مدرسة العربي للتكنولوجيا التطبيقية" },
     fullName: { en: "Full Name", ar: "الاسم الكامل" },
     password: { en: "Password", ar: "كلمة المرور" },
-    login: { en: "Login", ar: "تسجيل دخول"},
+    login: { en: "Login", ar: "تسجيل دخول" },
     placeholder: {
       fullName: { en: "Enter your full name", ar: "أدخل اسمك الكامل" },
       password: { en: "Enter your password", ar: "أدخل كلمة المرور" }
     },
     fillAllFields: { en: 'Please fill in all fields!', ar: 'يرجى ملء كل الحقول!' },
-    createAccount: { en: "Create Account", ar: "إنشاء الحساب" },
-    arabic:{en:"Arabic",ar:"العربية"},
-    english:{en:"English",ar:"الأنجليزية"},
-    home:{en:"Home",ar:"الرئيسية"}
-
-
+    invalid: { en: 'Invalid name or password!', ar: 'الاسم أو كلمة المرور غير صحيحة!' },
   };
-
 
   function setLanguage(newLang) {
     lang = newLang;
@@ -54,18 +50,45 @@ export default function initLogin() {
   if (enBtn) enBtn.addEventListener('click', () => setLanguage('en'));
   if (arBtn) arBtn.addEventListener('click', () => setLanguage('ar'));
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const fullName = fullNameInput.value.trim();
     const password = passwordInput.value.trim();
-    if (!fullName || !password ) {
+
+    if (!fullName || !password) {
       alert(translations.fillAllFields[lang]);
       return;
     }
 
-    const user = { fullName, password};
-    localStorage.setItem('user', JSON.stringify(user));
-    window.location.href = '/student_dashboard';
+    try {
+      const response = await axios.get('https://al-araby-db.vercel.app/users.json');
+      let users = response.data;
 
+      // لو الـ API بيرجع نص JSON نعمله parse
+      if (typeof users === "string") {
+        users = JSON.parse(users);
+      }
+
+      // ندوّر على المستخدم في الداتا
+      const foundUser = users.find(
+        user =>
+          user.fullname.toLowerCase() === fullName.toLowerCase() &&
+          String(user.password) === password
+      );
+
+      if (foundUser) {
+        // حفظ في localStorage
+        localStorage.setItem('user', JSON.stringify(foundUser));
+        alert(`${lang === 'ar' ? 'مرحبا' : 'Welcome'} ${foundUser.fullname}`);
+        window.location.href = '/student_dashboard';
+      } else {
+        alert(translations.invalid[lang]);
+      }
+
+    } catch (err) {
+      console.error("خطأ أثناء الاتصال بالـ API:", err);
+      alert("حدث خطأ أثناء تسجيل الدخول 💀");
+    }
   });
 }
