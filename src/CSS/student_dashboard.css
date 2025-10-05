@@ -1,6 +1,7 @@
 body {
    font-family: "Public Sans", "Noto Sans", sans-serif;
    background: #fff;
+   direction: rtl;
  }
  .btn-primary {
    background-color: #1193d4;

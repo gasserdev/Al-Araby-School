@@ -200,10 +200,25 @@ const showStudentDashboard = async () => {
 
   app.innerHTML = `
   <div class="container-fluid">
+    <!-- زرار القائمة للموبايل -->
     <button id="sidebarMobileBtn" class="btn btn-primary my-3 d-md-none" type="button"
       data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
       ☰ القائمة
     </button>
+
+    <!-- offcanvas sidebar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+      <div class="offcanvas-header d-flex justify-content-between">
+        <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">مدرسة العربي</h5>
+        <button type="button" class="btn-close text-reset ms-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav flex-column gap-2">
+          <a href="/student_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
+          <a href="#" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+        </nav>
+      </div>
+    </div>
 
     <div class="row min-vh-100">
       <div class="col-md-3 col-lg-2 d-none d-md-flex flex-column border-end pe-0">
@@ -262,16 +277,15 @@ const showStudentDashboard = async () => {
             </div>
           </div>
         </div>
-        </div>
-        </div>
       </div>
     </div>
   </div>
   `;
+
   await import("/src/JS/student_dashboard.js").then(module => module.default());
 };
 
-// ✅ Routes
+
 page('/', showHome);
 page('/create_account', showCreateAccount);
 page('/login', showLogin);
