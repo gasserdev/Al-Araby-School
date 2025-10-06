@@ -201,7 +201,7 @@ const showStudentDashboard = async () => {
       <div class="offcanvas-body">
         <nav class="nav flex-column gap-2">
           <a href="/student_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
-          <a href="#" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+          <a href="/student_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
         </nav>
       </div>
     </div>
@@ -287,8 +287,6 @@ const showStudentSettings = async () => {
 };
 
 page('/student_settings', showStudentSettings);
-
-
 page('/', showHome);
 page('/create_account', showCreateAccount);
 page('/login', showLogin);
