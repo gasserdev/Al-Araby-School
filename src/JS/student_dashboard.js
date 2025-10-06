@@ -20,10 +20,11 @@ export default function initStudentDashboard() {
       }
 
       const currentStudent = users.find(u =>
-        u.id === user.id && u.role === "student"
+        u.id === Number(user.id) && (u.role === "student" || u.role === "طالب")
       );
 
       if (currentStudent) {
+        // عرض الدرجات
         const gradesTableBody = document.getElementById('gradesTableBody');
         if (gradesTableBody && currentStudent.grades) {
           gradesTableBody.innerHTML = '';
@@ -34,6 +35,7 @@ export default function initStudentDashboard() {
           });
         }
 
+        // عرض الجدول الأسبوعي
         const scheduleTableBody = document.getElementById('scheduleTableBody');
         if (scheduleTableBody && currentStudent.schedule) {
           scheduleTableBody.innerHTML = '';
