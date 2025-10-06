@@ -200,13 +200,11 @@ const showStudentDashboard = async () => {
 
   app.innerHTML = `
   <div class="container-fluid">
-    <!-- زرار القائمة للموبايل -->
     <button id="sidebarMobileBtn" class="btn btn-primary my-3 d-md-none" type="button"
       data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
       ☰ القائمة
     </button>
 
-    <!-- offcanvas sidebar -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
       <div class="offcanvas-header d-flex justify-content-between">
         <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">مدرسة العربي</h5>
@@ -235,44 +233,43 @@ const showStudentDashboard = async () => {
         <div class="p-4">
           <h1 class="fw-bold fs-2 mb-3">لوحة الطالب</h1>
           <h2 class="fw-bold fs-4 mb-4">مرحبًا ${user.fullname}</h2>
-          <div class="row row-cols-1 row-cols-md-2 g-3 mb-3">
-            <div class="col">
-              <div class="card card-custom">
-                <div class="card-body">
-                  <h5 class="fw-bold">رياضيات</h5>
-                  <p class="text-muted">مدرس: أستاذ علي</p>
-                  <p class="text-muted">موعد الحصة: السبت 10:00 - 11:00</p>
-                </div>
+
+          <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+              <h3 class="card-title mb-0">الدرجات</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover" id="gradesTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">المادة</th>
+                      <th scope="col">الدرجة</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gradesTableBody">
+                  </tbody>
+                </table>
               </div>
             </div>
-
-            <div class="col">
-              <div class="card card-custom">
-                <div class="card-body">
-                  <h5 class="fw-bold">فيزياء</h5>
-                  <p class="text-muted">مدرس: أستاذة ليلى</p>
-                  <p class="text-muted">موعد الحصة: السبت 11:30 - 12:30</p>
-                </div>
-              </div>
+          </div>
+          <div class="card">
+            <div class="card-header bg-success text-white">
+              <h3 class="card-title mb-0">الجدول الدراسي</h3>
             </div>
-
-            <div class="col">
-              <div class="card card-custom">
-                <div class="card-body">
-                  <h5 class="fw-bold">لغة عربية</h5>
-                  <p class="text-muted">مدرس: أستاذ سامي</p>
-                  <p class="text-muted">موعد الحصة: الأحد 10:00 - 11:00</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card card-custom">
-                <div class="card-body">
-                  <h5 class="fw-bold">لغة إنجليزية</h5>
-                  <p class="text-muted">مدرس: أستاذة نور</p>
-                  <p class="text-muted">موعد الحصة: الأحد 11:30 - 12:30</p>
-                </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped table-hover" id="scheduleTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">اليوم</th>
+                      <th scope="col">المادة</th>
+                      <th scope="col">الوقت</th>
+                    </tr>
+                  </thead>
+                  <tbody id="scheduleTableBody">
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

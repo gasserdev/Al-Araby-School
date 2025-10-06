@@ -65,12 +65,10 @@ export default function initLogin() {
       const response = await axios.get('https://al-araby-db.vercel.app/users.json');
       let users = response.data;
 
-      // لو الـ API بيرجع نص JSON نعمله parse
       if (typeof users === "string") {
         users = JSON.parse(users);
       }
 
-      // ندوّر على المستخدم في الداتا
       const foundUser = users.find(
         user =>
           user.fullname.toLowerCase() === fullName.toLowerCase() &&
@@ -78,7 +76,6 @@ export default function initLogin() {
       );
 
       if (foundUser) {
-        // حفظ في localStorage
         localStorage.setItem('user', JSON.stringify(foundUser));
         alert(`${lang === 'ar' ? 'مرحبا' : 'Welcome'} ${foundUser.fullname}`);
         window.location.href = '/student_dashboard';
