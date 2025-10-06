@@ -7,14 +7,14 @@ const showHome = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#" data-link data-i18n="brand">مدرسة العربي للتكنولوجيا التطبيقية</a>
+        <a class="navbar-brand fw-bold" href="#"> العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header justify-content-between">
-            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="brand">
+            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
               مدرسة العربي
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
@@ -22,10 +22,10 @@ const showHome = async () => {
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
               <li class="nav-item">
-                <button id="enBtn" class="nav-link active btn btn-light">English</button>
+                <a href="/login" class="nav-link btn btn-primary" style="width:120px;">تسجيل دخول</a>
               </li>
               <li class="nav-item">
-                <button id="arBtn" class="nav-link active btn btn-primary">العربية</button>
+                <a href="/create_account" class="nav-link btn btn-light" style="width:120px;">حساب جديد</a>
               </li>
             </ul>
           </div>
@@ -37,12 +37,12 @@ const showHome = async () => {
     <div class="container w-100">
       <div id='hero' class="d-flex justify-content-center gap-3 align-items-center flex-column">
         <div class="d-flex flex-column justify-content-center text-center mt-5 align-content-center">
-          <h2 class="fs-2" data-i18n="welcome">مرحبا بك في مدرسة العربي</h2>
-          <p class="fs-5" data-i18n="desc">بوابتك إلى النمو والتعلم</p>
+          <h2 class="fs-2">مرحبًا بك في مدرسة العربي</h2>
+          <p class="fs-5">بوابتك إلى النمو والتعلم</p>
         </div>
         <div class="d-flex gap-2 flex-column">
-          <a href="/login" class="btn btn-primary" id="signInBtn" data-i18n="signin">تسجيل دخول</a>
-          <a href="/create_account" class="btn btn-light mb-2" id="createAccountBtn" data-link data-i18n="create">حساب جديد</a>
+          <a href="/login" class="btn btn-primary" id="signInBtn">تسجيل دخول</a>
+          <a href="/create_account" class="btn btn-light mb-2" id="createAccountBtn" data-link>حساب جديد</a>
         </div>
       </div>
     </div>
@@ -56,14 +56,14 @@ const showCreateAccount = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="title">العربي للتكنولوجيا التطبيقية</a>
+        <a class="navbar-brand fw-bold" href="/"> العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header justify-content-between">
-            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="heading">
+            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
               مدرسة العربي للتكنولوجيا التطبيقية
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
@@ -71,16 +71,10 @@ const showCreateAccount = async () => {
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
               <li class="nav-item">
-                <a href="/" class="nav-link btn text-primary" data-link data-i18n="home" style="width:100px;">الرئيسية</a>
+                <a href="/" class="nav-link btn text-primary" style="width:100px;">الرئيسية</a>
               </li>
               <li class="nav-item">
-                <button id="enBtn" class="nav-link active btn" style="width:110px;" data-i18n="english">English</button>
-              </li>
-              <li class="nav-item">
-                <button id="arBtn" class="nav-link active btn" style="width:110px;" data-i18n="arabic">العربية</button>
-              </li>
-              <li class="nav-item">
-                <a href="/login" data-link class="nav-link active btn btn-primary" data-i18n="login">تسجيل دخول</a>
+                <a href="/login" data-link class="nav-link active btn btn-primary">تسجيل دخول</a>
               </li>
             </ul>
           </div>
@@ -90,18 +84,18 @@ const showCreateAccount = async () => {
   </header>
   <main>
     <div class="container">
-      <h3 class="text-center mb-4 fw-bold" data-i18n="createAccount">إنشاء حساب</h3>
+      <h3 class="text-center mb-4 fw-bold">إنشاء حساب</h3>
       <form id="createForm">
         <div class="mb-3">
-          <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
+          <label class="form-label" for="fullName">الاسم الكامل</label>
           <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="password" data-i18n="password">كلمة المرور</label>
+          <label class="form-label" for="password">كلمة المرور</label>
           <input type="password" class="form-control" minlength="8" required id="password" placeholder="أدخل كلمة المرور">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="role" data-i18n="role">الدور</label>
+          <label class="form-label" for="role">الدور</label>
           <select class="form-select" id="role" required>
             <option value="" selected disabled>اختر الدور</option>
             <option value="طالب">طالب</option>
@@ -109,7 +103,7 @@ const showCreateAccount = async () => {
           </select>
         </div>
         <div class="mb-3" id="grade-wrapper">
-          <label class="form-label" for="grade" data-i18n="grade">السنة الدراسية</label>
+          <label class="form-label" for="grade">السنة الدراسية</label>
           <select class="form-select" id="grade">
             <option value="" selected disabled>اختر السنة الدراسية</option>
             <option value="الأولى">الأولى</option>
@@ -118,7 +112,7 @@ const showCreateAccount = async () => {
           </select>
         </div>
         <div class="mb-3" id="section-wrapper">
-          <label class="form-label" for="section" data-i18n="section">القسم</label>
+          <label class="form-label" for="section">القسم</label>
           <select class="form-select" id="section">
             <option value="" selected disabled>اختر قسمك</option>
             <option value="اداب">اداب</option>
@@ -126,7 +120,7 @@ const showCreateAccount = async () => {
             <option value="كمياء">كمياء</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary w-100" data-i18n="createAccount">إنشاء الحساب</button>
+        <button type="submit" class="btn btn-primary w-100">إنشاء الحساب</button>
       </form>
     </div>
   </main>
@@ -139,14 +133,14 @@ const showLogin = async () => {
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="/" data-link data-i18n="heading">مدرسة العربي للتكنولوجيا التطبيقية</a>
+        <a class="navbar-brand fw-bold" href="/"> العربي للتكنولوجيا التطبيقية</a>
         <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header justify-content-between">
-            <h5 data-i18n="heading" class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel" data-i18n="brand">
+            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
               مدرسة العربي
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
@@ -154,16 +148,10 @@ const showLogin = async () => {
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
               <li class="nav-item">
-                <a href="/" class="nav-link btn text-primary" data-link data-i18n="home" style="width:100px;">الرئيسية</a>
+                <a href="/" class="nav-link btn text-primary" style="width:100px;">الرئيسية</a>
               </li>
               <li class="nav-item">
-                <button id="enBtn" class="nav-link active btn" style="width:110px;" data-i18n="english">English</button>
-              </li>
-              <li class="nav-item">
-                <button id="arBtn" class="nav-link active btn" data-i18n="arabic" style="width:110px;">العربية</button>
-              </li>
-              <li class="nav-item">
-                <a href="/create_account" data-link class="nav-link active btn btn-primary" data-i18n="createAccount">حساب جديد</a>
+                <a href="/create_account" data-link class="nav-link active btn btn-primary">حساب جديد</a>
               </li>
             </ul>
           </div>
@@ -173,17 +161,17 @@ const showLogin = async () => {
   </header>
   <main>
     <div class="container">
-      <h3 class="text-center mb-4 fw-bold" data-i18n="login">تسجيل دخول</h3>
+      <h3 class="text-center mb-4 fw-bold">تسجيل دخول</h3>
       <form id="createForm">
         <div class="mb-3">
-          <label class="form-label" for="fullName" data-i18n="fullName">الاسم الكامل</label>
+          <label class="form-label" for="fullName">الاسم الكامل</label>
           <input type="text" class="form-control" id="fullName" required placeholder="أدخل اسمك الكامل">
         </div>
         <div class="mb-3">
-          <label class="form-label" for="password" data-i18n="password">كلمة المرور</label>
+          <label class="form-label" for="password">كلمة المرور</label>
           <input type="password" class="form-control" minlength="8" required id="password" placeholder="أدخل كلمة المرور">
         </div>
-        <button type="submit" class="btn btn-primary w-100" data-i18n="login">تسجيل دخول</button>
+        <button type="submit" class="btn btn-primary w-100">تسجيل دخول</button>
       </form>
     </div>
   </main>
@@ -224,7 +212,7 @@ const showStudentDashboard = async () => {
           <nav class="nav flex-column gap-2">
             <h5 class="mb-3">مدرسة العربي</h5>
             <a href="/student_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
-            <a href="#" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+            <a href="/student_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
           </nav>
         </div>
       </div>
@@ -247,12 +235,12 @@ const showStudentDashboard = async () => {
                       <th scope="col">الدرجة</th>
                     </tr>
                   </thead>
-                  <tbody id="gradesTableBody">
-                  </tbody>
+                  <tbody id="gradesTableBody"></tbody>
                 </table>
               </div>
             </div>
           </div>
+
           <div class="card">
             <div class="card-header bg-success text-white">
               <h3 class="card-title mb-0">الجدول الدراسي</h3>
@@ -267,8 +255,7 @@ const showStudentDashboard = async () => {
                       <th scope="col">الوقت</th>
                     </tr>
                   </thead>
-                  <tbody id="scheduleTableBody">
-                  </tbody>
+                  <tbody id="scheduleTableBody"></tbody>
                 </table>
               </div>
             </div>
@@ -281,6 +268,25 @@ const showStudentDashboard = async () => {
 
   await import("/src/JS/student_dashboard.js").then(module => module.default());
 };
+
+const showStudentSettings = async () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    page.redirect('/login');
+    return;
+  }
+
+  app.innerHTML = `
+    <div class="container py-4">
+      <h1 class="fw-bold mb-4">إعدادات الطالب</h1>
+      <div id="student-settings"></div>
+    </div>
+  `;
+
+  await import("/src/JS/student_settings.js").then(module => module.default());
+};
+
+page('/student_settings', showStudentSettings);
 
 
 page('/', showHome);
