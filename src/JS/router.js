@@ -379,6 +379,26 @@ const showStudentSettings = async () => {
   await import("/src/JS/student_settings.js").then(module => module.default());
 };
 
+const showTeacherSettings = async () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user || (user.role !== "teacher" && user.role !== "مدرس")) {
+    page.redirect('/login');
+    return;
+  }
+
+  app.innerHTML = `
+    <div class="container py-4">
+      <h1 class="fw-bold mb-4">إعدادات المدرس</h1>
+      <div id="teacher-settings"></div>
+    </div>
+  `;
+
+  await import("/src/JS/teacher_settings.js").then(module => module.default());
+};
+
+page('/teacher_settings', showTeacherSettings);
+
+
 page('/student_settings', showStudentSettings);
 page('/', showHome);
 page('/create_account', showCreateAccount);
