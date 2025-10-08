@@ -13,7 +13,23 @@ export default function initTeacherDashboard() {
     return;
   }
 
-  // accept both 'teacher' and arabic 'مدرس'
+  if (user.isHOD === true) {
+    // اتأكد إن الزرار مش مضاف قبل كده
+    if (!document.querySelector(".go-hod-dashboard-btn")) {
+      const hodLink = document.createElement("a");
+      hodLink.href = "/hod_dashboard";
+      hodLink.textContent = " الذهاب إلى لوحة رئيس القسم";
+      hodLink.className = "btn btn-warning my-3 w-100 fw-bold go-hod-dashboard-btn";
+
+      const topArea = document.querySelector(".container") || document.body;
+      topArea.prepend(hodLink);
+    }
+  }
+
+
+
+
+
   const role = (user.role || "").toString().toLowerCase();
   if (!(role === "teacher" || role === "مدرس")) {
     alert("هذا الحساب ليس حساب مدرس.");

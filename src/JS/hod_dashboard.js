@@ -6,9 +6,37 @@ export default async function initHODDashboard() {
   const API_URL = "https://raw.githubusercontent.com/gasserdev/Al-Araby-DB-test/refs/heads/main/users.json";
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // تحقق من صلاحيات الوصول
   if (!user || !user.isHOD) {
-    document.body.innerHTML = "<h2 class='text-center mt-5 text-danger'> لا تملك صلاحية الوصول إلى لوحة رئيس القسم.</h2>";
+    document.body.innerHTML = `
+      <h2 class='text-center mt-5 text-danger'>
+        لا تملك صلاحية الوصول إلى لوحة رئيس القسم.
+      </h2>
+      <div class="text-center mt-3">
+        <button class="btn btn-outline-primary" id="goToTeacher">الذهاب إلى لوحة المدرس</button>
+      </div>
+    `;
+    document.getElementById("goToTeacher").addEventListener("click", () => {
+      window.location.href = "/teacher_dashboard";
+    });
     return;
+  }
+
+  // إنشاء الشريط العلوي
+  if (!document.querySelector(".hod-topbar")) {
+    const topBar = document.createElement("div");
+    topBar.className = "hod-topbar d-flex justify-content-between align-items-center p-3 bg-light border-bottom sticky-top";
+    topBar.innerHTML = `
+      <h4 class="m-0 fw-bold text-primary">لوحة رئيس القسم</h4>
+      <button id="backToTeacher" class="btn btn-outline-secondary">
+        🔙 العودة إلى لوحة المدرس
+      </button>
+    `;
+    document.body.prepend(topBar);
+
+    document.getElementById("backToTeacher").addEventListener("click", () => {
+      window.location.href = "/teacher_dashboard";
+    });
   }
 
   const yearsContainer = document.getElementById("yearsContainer");
@@ -17,7 +45,6 @@ export default async function initHODDashboard() {
   try {
     const { data } = await axios.get(API_URL);
     const sectionData = data.filter(u => u.section === user.section);
-
     const years = [...new Set(sectionData.filter(u => u.year).map(u => u.year))];
 
     yearsContainer.innerHTML = `
@@ -31,7 +58,7 @@ export default async function initHODDashboard() {
     });
 
   } catch (error) {
-    yearsContainer.innerHTML = "<p class='text-danger'> فشل تحميل البيانات.</p>";
+    yearsContainer.innerHTML = "<p class='text-danger'>فشل تحميل البيانات.</p>";
     console.error(error);
   }
 
@@ -45,7 +72,7 @@ export default async function initHODDashboard() {
             <button class="btn btn-light" id="showStudentsBtn">عرض الطلاب</button>
           </div>
         </div>
-        <div class="card-body" id="yearContent">اختر عرض المدرسين أو الطلاب </div>
+        <div class="card-body" id="yearContent">اختر عرض المدرسين أو الطلاب</div>
       </div>
     `;
 
@@ -64,9 +91,11 @@ export default async function initHODDashboard() {
 
     container.innerHTML = teachers.map(t => `
       <div class="border rounded p-3 mb-3 shadow-sm bg-light">
-        <p><strong> ${t.fullname}</strong></p>
+        <p><strong>${t.fullname}</strong></p>
         <p>الفصول: ${t.classes.map(c => c.name).join(", ")}</p>
-        <button class="btn btn-sm btn-outline-success" onclick="rateTeacher('${t.fullname}')">تقييم المدرس</button>
+        <button class="btn btn-sm btn-outline-success" onclick="rateTeacher('${t.fullname}')">
+          تقييم المدرس
+        </button>
       </div>
     `).join("");
   }
@@ -106,11 +135,11 @@ export default async function initHODDashboard() {
 
     container.innerHTML = students.map(s => `
       <div class="border rounded p-3 mb-3 shadow-sm bg-white">
-        <p><strong> ${s.fullname}</strong></p>
+        <p><strong>${s.fullname}</strong></p>
         <ul>${Object.entries(s.grades || {}).map(([subj, grade]) => `<li>${subj}: ${grade}</li>`).join("")}</ul>
         <button class="btn btn-sm ${localStorage.getItem("banned_" + s.id) ? "btn-success" : "btn-danger"}"
           onclick="toggleBan('${s.id}')">
-          ${localStorage.getItem("banned_" + s.id) ? "مسموح بالتعيين " : "ممنوع من التعيين"}
+          ${localStorage.getItem("banned_" + s.id) ? "مسموح بالتعيين" : "ممنوع من التعيين"}
         </button>
       </div>
     `).join("");
@@ -119,9 +148,9 @@ export default async function initHODDashboard() {
   window.rateTeacher = function (teacherName) {
     const rating = prompt(`كم تقييمك للمدرس ${teacherName} من 5؟`);
     if (rating && !isNaN(rating) && rating > 0 && rating <= 5) {
-      alert(`تم تسجيل تقييم ${rating}/5 للمدرس ${teacherName} `);
+      alert(`تم تسجيل تقييم ${rating}/5 للمدرس ${teacherName}`);
     } else {
-      alert(" تقييم غير صالح!");
+      alert("تقييم غير صالح!");
     }
   };
 
@@ -129,10 +158,10 @@ export default async function initHODDashboard() {
     const key = "banned_" + studentId;
     if (localStorage.getItem(key)) {
       localStorage.removeItem(key);
-      alert(" تم السماح بالتعيين لهذا الطالب.");
+      alert("تم السماح بالتعيين لهذا الطالب.");
     } else {
       localStorage.setItem(key, "true");
-      alert(" تم منعه من التعيين.");
+      alert("تم منعه من التعيين.");
     }
     window.location.reload();
   };
