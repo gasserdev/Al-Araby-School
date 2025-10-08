@@ -119,7 +119,7 @@ export default async function initHODDashboard() {
   window.rateTeacher = function (teacherName) {
     const rating = prompt(`كم تقييمك للمدرس ${teacherName} من 5؟`);
     if (rating && !isNaN(rating) && rating > 0 && rating <= 5) {
-      alert(`تم تسجيل تقييم ${rating}/5 للمدرس ${teacherName} ✅`);
+      alert(`تم تسجيل تقييم ${rating}/5 للمدرس ${teacherName} `);
     } else {
       alert(" تقييم غير صالح!");
     }

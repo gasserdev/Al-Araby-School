@@ -429,7 +429,7 @@ const showHODDashboard = async () => {
           <nav class="nav flex-column gap-2">
             <h5 class="mb-3">${user.section}</h5>
             <a href="/hod_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
-            <a href="/teacher_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+            <a href="/hod_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
           </nav>
         </div>
       </div>
@@ -457,7 +457,20 @@ const showHODDashboard = async () => {
 
   await import("/src/JS/hod_dashboard.js").then(module => module.default());
 };
+const showHODSettings = async () => {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  if (!user || !user.isHOD) {
+    page.redirect("/login");
+    return;
+  }
 
+  app.innerHTML = `
+    <div class="container py-4" id="settingsContainer"></div>
+  `;
+
+  await import("/src/JS/hod_settings.js").then(module => module.default());
+};
+page('/hod_settings', showHODSettings);
 page('/teacher_settings', showTeacherSettings);
 page('/hod_dashboard', showHODDashboard);
 page('/student_settings', showStudentSettings);
