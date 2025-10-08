@@ -396,9 +396,70 @@ const showTeacherSettings = async () => {
   await import("/src/JS/teacher_settings.js").then(module => module.default());
 };
 
+const showHODDashboard = async () => {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  if (!user || !user.isHOD) {
+    page.redirect("/login");
+    return;
+  }
+
+  app.innerHTML = `
+  <div class="container-fluid">
+    <button id="sidebarMobileBtn" class="btn btn-primary my-3 d-md-none" type="button"
+      data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+      ☰ القائمة
+    </button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+      <div class="offcanvas-header d-flex justify-content-between">
+        <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">${user.section}</h5>
+        <button type="button" class="btn-close text-reset ms-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav flex-column gap-2">
+          <a href="/hod_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
+          <a href="/teacher_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row min-vh-100">
+      <div class="col-md-3 col-lg-2 d-none d-md-flex flex-column border-end pe-0">
+        <div class="p-3 d-flex flex-column justify-content-between" style="min-height:700px;">
+          <nav class="nav flex-column gap-2">
+            <h5 class="mb-3">${user.section}</h5>
+            <a href="/hod_dashboard" class="nav-link active"><i class="fas fa-house"></i> الرئيسية</a>
+            <a href="/teacher_settings" class="nav-link"><i class="fas fa-gear"></i> الإعدادات</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-9 col-lg-10">
+        <div class="p-4">
+          <h1 class="fw-bold fs-2 mb-3">لوحة رئيس القسم</h1>
+          <h2 class="fw-bold fs-4 mb-4">مرحبًا ${user.fullname}</h2>
+
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">السنين الدراسية في قسم ${user.section}</h5>
+            </div>
+            <div class="card-body" id="yearsContainer">
+              <div class="text-center text-muted">جارٍ التحميل...</div>
+            </div>
+          </div>
+
+          <div id="detailsContainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  await import("/src/JS/hod_dashboard.js").then(module => module.default());
+};
+
 page('/teacher_settings', showTeacherSettings);
-
-
+page('/hod_dashboard', showHODDashboard);
 page('/student_settings', showStudentSettings);
 page('/', showHome);
 page('/create_account', showCreateAccount);
