@@ -29,7 +29,7 @@ export default async function initHODDashboard() {
     topBar.innerHTML = `
       <h4 class="m-0 fw-bold text-primary">لوحة رئيس القسم</h4>
       <button id="backToTeacher" class="btn btn-outline-secondary">
-        🔙 العودة إلى لوحة المدرس
+         العودة إلى لوحة المدرس
       </button>
     `;
     document.body.prepend(topBar);
