@@ -470,7 +470,25 @@ const showHODSettings = async () => {
 
   await import("/src/JS/hod_settings.js").then(module => module.default());
 };
+const showAdminDashboard = async () => {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  if (!user || (user.role !== "admin" && user.role !== "manager")) {
+    page.redirect('/login');
+    return;
+  }
+
+  app.innerHTML = `
+  <div id="dashboardContainer" class="container mt-4"></div>
+<button id="backBtn" class="btn btn-danger m-3">رجوع</button>
+
+  `;
+
+  await import("/src/JS/admin_dashboard.js").then(module => module.default());
+};
+
+
 page('/hod_settings', showHODSettings);
+page('/admin_dashboard', showAdminDashboard);
 page('/teacher_settings', showTeacherSettings);
 page('/hod_dashboard', showHODDashboard);
 page('/student_settings', showStudentSettings);
