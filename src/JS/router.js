@@ -486,8 +486,15 @@ const showAdminDashboard = async () => {
   await import("/src/JS/admin_dashboard.js").then(module => module.default());
 };
 
+const showAdminSettings = async ()=> {
+  app.innerHTML = `
+    <div id="dashboardContainer"></div>
+  `;
+  await import("/src/JS/admin_settings.js").then(module => module.default());
+};
 
 page('/hod_settings', showHODSettings);
+page('/admin_settings', showAdminSettings);
 page('/admin_dashboard', showAdminDashboard);
 page('/teacher_settings', showTeacherSettings);
 page('/hod_dashboard', showHODDashboard);

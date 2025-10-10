@@ -9,19 +9,22 @@ export default function initManagerDashboard() {
   const backBtn = document.getElementById("backBtn");
   if (!container) return;
 
-  // إنشاء الهيدر فوق الداشبورد
   const header = document.createElement("div");
   header.className = "p-3 mb-3 bg-light border-bottom d-flex justify-content-between align-items-center";
+
   header.innerHTML = `
-    <div>
-      <h4 id="greetingText" class="m-0"></h4>
+    <div class="d-flex flex-column">
+      <h4 id="greetingText" class="m-0 mb-1"></h4>
       <small class="text-muted" id="roleText"></small>
     </div>
-    <button class="btn btn-outline-danger btn-sm" id="logoutBtn">تسجيل خروج</button>
+    <button class="btn btn-outline-primary btn-sm" id="settingsBtn">الإعدادات</button>
   `;
   container.parentElement.prepend(header);
 
-  // تحديث التحية حسب المستخدم
+
+  const settingsBtn = document.getElementById("settingsBtn");
+  settingsBtn.onclick = () => page("/admin_settings");
+
   const user = JSON.parse(localStorage.getItem("user"));
   const greetingText = document.getElementById("greetingText");
   const roleText = document.getElementById("roleText");
@@ -36,13 +39,6 @@ export default function initManagerDashboard() {
     roleText.textContent = "";
   }
 
-  // زر تسجيل الخروج
-  document.getElementById("logoutBtn").onclick = () => {
-    localStorage.removeItem("user");
-    page("/login");
-  };
-
-  // عنوان API
   const API_URL = 'https://raw.githubusercontent.com/gasserdev/Al-Araby-DB-test/main/users.json';
 
   async function fetchData() {
@@ -50,7 +46,6 @@ export default function initManagerDashboard() {
     return typeof response.data === "string" ? JSON.parse(response.data) : response.data;
   }
 
-  // عرض الأقسام
   function showDepartments() {
     container.innerHTML = `<h2 class="mb-3">الأقسام</h2>`;
     const departments = ["اداب", "فزياء", "لوجيستيات"];
@@ -64,7 +59,6 @@ export default function initManagerDashboard() {
     });
   }
 
-  // عرض السنوات
   function showYears(section) {
     container.innerHTML = `<h2 class="mb-3">قسم ${section}</h2>`;
     const years = ["الأولى", "الثانية", "الثالثة"];
@@ -78,7 +72,6 @@ export default function initManagerDashboard() {
     });
   }
 
-  // اختيار المدرسين أو الطلاب
   function chooseType(section, year) {
     container.innerHTML = `
       <h2>قسم ${section} - الصف ${year}</h2>
@@ -91,7 +84,6 @@ export default function initManagerDashboard() {
     document.getElementById("showStudents").onclick = () => showStudents(section, year);
   }
 
-  // عرض المدرسين
   async function showTeachers(section, year) {
     const data = await fetchData();
     const teachers = data.filter(u =>
@@ -125,7 +117,6 @@ export default function initManagerDashboard() {
         </div>
       `;
 
-      // زر الترقية
       card.querySelector(".toggle-hod").onclick = () => {
         const key = `HOD_${teacher.fullname}`;
         const current = localStorage.getItem(key) === "true";
@@ -133,7 +124,6 @@ export default function initManagerDashboard() {
         showTeachers(section, year);
       };
 
-      // زر الحذف
       card.querySelector(".delete-teacher").onclick = () => {
         card.remove();
       };
@@ -142,7 +132,6 @@ export default function initManagerDashboard() {
     });
   }
 
-  // عرض الطلاب
   async function showStudents(section, year) {
     const data = await fetchData();
     const students = data.filter(u =>

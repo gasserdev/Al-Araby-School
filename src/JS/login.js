@@ -45,7 +45,6 @@ export default function initLogin() {
       alert(`مرحبًا ${foundUser.fullname}`);
 
       const role = (foundUser.role || '').toLowerCase();
-      // هنا فقط page() بدون window.location.href
       if (role === 'student') page('/student_dashboard');
       else if (role === 'teacher') page('/teacher_dashboard');
       else if (role === 'manager') page('/admin_dashboard');
