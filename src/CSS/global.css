@@ -11,7 +11,7 @@
   color: white !important;
 }
 .btn{
-  padding: 10px 20px;
+  padding: 15px 20px;
 }
 .btn-light{
   background-color: rgb(228, 224, 224) !important;
@@ -25,4 +25,114 @@
 }
 .noborder{
   border: none !important;
+}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-dark: #212529;
+  --radius: 14px;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  margin: 0;
+  min-height: 100vh;
+}
+
+
+.nav-link.btn {
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+.nav-link.btn:hover {
+  transform: translateY(-2px);
+}
+
+main {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+form {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.form-label {
+  font-weight: 600;
+}
+.form-control, .form-select {
+  border-radius: var(--radius);
+}
+
+.btn {
+  border-radius: var(--radius) !important;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.card-header {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.table {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table thead {
+  background: var(--primary);
+  color: white;
+}
+.table-hover tbody tr:hover {
+  background: rgba(13, 110, 253, 0.1);
+}
+
+
+.offcanvas-body a.nav-link {
+  font-weight: 500;
+}
+.offcanvas-body a.active {
+  background: var(--primary);
+  color: white !important;
+  border-radius: var(--radius);
+}
+
+/* === DASHBOARD === */
+#sidebarOffcanvas, .border-end {
+  background: var(--card-bg);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
+  }
+  .container {
+    padding: 10px;
+  }
 }

@@ -14,18 +14,19 @@ const showHome = async () => {
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header justify-content-between">
-            <h5 class="offcanvas-title fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
+            <h5 class="offcanvas-title mx-3 fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
               مدرسة العربي
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
+
               <li class="nav-item">
-                <a href="/login" class="nav-link btn btn-primary" style="width:120px;">تسجيل دخول</a>
+                <a href="/create_account" class="nav-link  w-100 btn btn-light" style="width:120px;">حساب جديد</a>
               </li>
               <li class="nav-item">
-                <a href="/create_account" class="nav-link btn btn-light" style="width:120px;">حساب جديد</a>
+                <a href="/login" class="nav-link btn  w-100 btn-primary " style="width:120px;">تسجيل دخول</a>
               </li>
             </ul>
           </div>
@@ -34,7 +35,7 @@ const showHome = async () => {
     </nav>
   </header>
   <main>
-    <div class="container w-100">
+    <div class="container mb-5 w-100">
       <div id='hero' class="d-flex justify-content-center gap-3 align-items-center flex-column">
         <div class="d-flex flex-column justify-content-center text-center mt-5 align-content-center">
           <h2 class="fs-2">مرحبًا بك في مدرسة العربي</h2>
