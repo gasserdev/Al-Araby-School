@@ -1,10 +1,9 @@
-// /src/JS/teacher_dashboard.js
 import axios from "axios";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '/src/CSS/global.css';
 
 export default function initTeacherDashboard() {
-  const classesCardBody = document.getElementById("classesList"); // موجود بالـUI
+  const classesCardBody = document.getElementById("classesList");
   const studentsTableBody = document.getElementById("studentsTableBody");
   const user = JSON.parse(localStorage.getItem("user") || "null");
 
@@ -14,7 +13,6 @@ export default function initTeacherDashboard() {
   }
 
   if (user.isHOD === true) {
-    // اتأكد إن الزرار مش مضاف قبل كده
     if (!document.querySelector(".go-hod-dashboard-btn")) {
       const hodLink = document.createElement("a");
       hodLink.href = "/hod_dashboard";
@@ -38,7 +36,6 @@ export default function initTeacherDashboard() {
 
   const API_URL = "https://raw.githubusercontent.com/gasserdev/Al-Araby-DB-test/main/users.json";
 
-  // ---------- Helpers ----------
   const getYearFromClassName = (clsName) => {
     if (!clsName || typeof clsName !== "string") return "غير معروف";
     const first = clsName.trim()[0];
@@ -48,19 +45,16 @@ export default function initTeacherDashboard() {
     return "غير معروف";
   };
 
-  // Normalize teacher.classes to array of objects {name, year}
   const normalizeClasses = (raw) => {
     if (!Array.isArray(raw)) return [];
     return raw.map(item => {
       if (typeof item === "string") {
         return { name: item, year: getYearFromClassName(item) };
       }
-      // assume object {name, year}
       return { name: item.name, year: item.year || getYearFromClassName(item.name) };
     });
   };
 
-  // create a small toast
   function showToast(msg, success = true) {
     const t = document.createElement('div');
     t.textContent = msg;
@@ -78,7 +72,6 @@ export default function initTeacherDashboard() {
     setTimeout(() => t.remove(), 2000);
   }
 
-  // save student grades locally (updatedGrades in localStorage)
   const saveLocalGrades = (studentId, gradesObj) => {
     try {
       const saved = JSON.parse(localStorage.getItem('updatedGrades') || '{}');
@@ -89,14 +82,12 @@ export default function initTeacherDashboard() {
     }
   };
 
-  // fetch data and init UI
   async function init() {
     try {
       const res = await axios.get(API_URL, { timeout: 10000 });
       let data = res.data;
       if (typeof data === "string") data = JSON.parse(data);
 
-      // find teacher record from API: by id (preferred) or fullname fallback
       const teacher = data.find(u => Number(u.id) === Number(user.id)) ||
                       data.find(u => (u.fullname || "").toLowerCase() === (user.fullname || "").toLowerCase());
 
@@ -105,14 +96,12 @@ export default function initTeacherDashboard() {
         return;
       }
 
-      // normalized classes
       const classes = normalizeClasses(teacher.classes || []);
       if (classes.length === 0) {
         classesCardBody.innerHTML = "<li class='list-group-item text-muted'>لا توجد فصول مرتبطة بهذا الحساب.</li>";
         return;
       }
 
-      // build years dropdown + classes dropdown into the existing classesCardBody area
       buildYearAndClassSelectors(classes, data, teacher);
     } catch (err) {
       console.error("خطأ في تحميل بيانات الـ API:", err);
@@ -120,13 +109,10 @@ export default function initTeacherDashboard() {
     }
   }
 
-  // Build selectors UI (year above classes as requested)
   function buildYearAndClassSelectors(classesArr, allData, teacher) {
-    // find parent container (the element with id classesList may be a UL)
     const parentEl = classesCardBody;
-    parentEl.innerHTML = ""; // clear
+    parentEl.innerHTML = "";
 
-    // create year select
     const years = [...new Set(classesArr.map(c => c.year))];
     const yearLabel = document.createElement('div');
     yearLabel.className = "p-2";
@@ -148,7 +134,6 @@ export default function initTeacherDashboard() {
     yearLabel.appendChild(yearSelect);
     parentEl.appendChild(yearLabel);
 
-    // create class select
     const classLabel = document.createElement('div');
     classLabel.className = "p-2";
     classLabel.innerHTML = `<label class="form-label mb-1">اختر الفصل</label>`;
@@ -163,15 +148,12 @@ export default function initTeacherDashboard() {
     classLabel.appendChild(classSelect);
     parentEl.appendChild(classLabel);
 
-    // when year changes -> populate classes
     yearSelect.addEventListener('change', () => {
       const selectedYear = yearSelect.value;
       populateClassesForYear(classesArr, selectedYear, classSelect);
-      // clear students table
       studentsTableBody.innerHTML = `<tr><td colspan="3" class="text-muted text-center">اختر فصلًا لعرض الطلاب.</td></tr>`;
     });
 
-    // when class changes -> load students
     classSelect.addEventListener('change', () => {
       const selectedClass = classSelect.value;
       loadStudentsByClass(allData, selectedClass, teacher.section);
@@ -205,7 +187,6 @@ export default function initTeacherDashboard() {
     });
   }
 
-  // Load students for the selected class and render table with editable input for teacher.section
   function loadStudentsByClass(allData, className, teacherSection) {
     studentsTableBody.innerHTML = "";
 
@@ -216,7 +197,6 @@ export default function initTeacherDashboard() {
       return;
     }
 
-    // table header row (inject subject name)
     const headerRow = document.createElement('tr');
     headerRow.className = "table-dark";
     headerRow.innerHTML = `
@@ -226,12 +206,10 @@ export default function initTeacherDashboard() {
     `;
     studentsTableBody.appendChild(headerRow);
 
-    // load any locally saved grades (merge)
     const savedAll = JSON.parse(localStorage.getItem('updatedGrades') || '{}');
 
     students.forEach(student => {
       student.grades = student.grades || {};
-      // prefer local saved grade if exists
       const localGrades = savedAll[student.id] || {};
       const currentGrade = (localGrades[teacherSection] !== undefined) ? localGrades[teacherSection] : (student.grades[teacherSection] ?? 0);
 
@@ -246,14 +224,12 @@ export default function initTeacherDashboard() {
         </td>
       `;
 
-      // save button: update local storage (only)
       const saveBtn = tr.querySelector(".save-btn");
       saveBtn.addEventListener('click', () => {
         const input = tr.querySelector('.grade-input');
         const value = parseInt(input.value);
         const gradeVal = isNaN(value) ? 0 : value;
 
-        // update local copy and saved storage
         student.grades[teacherSection] = gradeVal;
         saveLocalGrades(student.id, student.grades);
         showToast(`تم حفظ درجة ${student.fullname} في ${teacherSection} محليًا`);
@@ -263,7 +239,6 @@ export default function initTeacherDashboard() {
     });
   }
 
-  // small helper to avoid XSS in text nodes (though data is local)
   function escapeHtml(str) {
     if (str === undefined || str === null) return "";
     return String(str)
@@ -275,7 +250,61 @@ export default function initTeacherDashboard() {
     if (str === undefined || str === null) return "";
     return String(str).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
+  function loadSchedule() {
+    const data = JSON.parse(localStorage.getItem("teacherSchedule") || "[]");
+    const tbody = document.getElementById("scheduleTableBody");
+    tbody.innerHTML = "";
+    if (data.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="3" class="text-muted">لا توجد مواعيد بعد.</td></tr>`;
+      return;
+    }
+    data.forEach((item, index) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${item.day}</td>
+        <td>${item.time}</td>
+        <td>
+          <button class="btn btn-sm btn-warning editBtn" data-index="${index}">تعديل</button>
+          <button class="btn btn-sm btn-danger deleteBtn" data-index="${index}">حذف</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
 
-  // start
+  function saveSchedule(data) {
+    localStorage.setItem("teacherSchedule", JSON.stringify(data));
+    loadSchedule();
+  }
+
+  document.getElementById("addScheduleBtn")?.addEventListener("click", () => {
+    const day = prompt("أدخل اليوم:");
+    const time = prompt("أدخل الوقت:");
+    if (!day || !time) return alert("الرجاء ملء جميع الحقول.");
+    const data = JSON.parse(localStorage.getItem("teacherSchedule") || "[]");
+    data.push({ day, time });
+    saveSchedule(data);
+  });
+
+  document.addEventListener("click", e => {
+    if (e.target.classList.contains("deleteBtn")) {
+      const i = e.target.dataset.index;
+      const data = JSON.parse(localStorage.getItem("teacherSchedule") || "[]");
+      data.splice(i, 1);
+      saveSchedule(data);
+    }
+    if (e.target.classList.contains("editBtn")) {
+      const i = e.target.dataset.index;
+      const data = JSON.parse(localStorage.getItem("teacherSchedule") || "[]");
+      const item = data[i];
+      const day = prompt("اليوم:", item.day);
+      const time = prompt("الوقت:", item.time);
+      data[i] = { day, time };
+      saveSchedule(data);
+    }
+  });
+
+  loadSchedule();
+
   init();
 }

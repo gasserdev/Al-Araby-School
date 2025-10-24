@@ -300,7 +300,6 @@ const showTeacherDashboard = async () => {
       </div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
     <div class="row min-vh-100">
       <div class="col-md-3 col-lg-2 d-none d-md-flex flex-column border-end pe-0">
         <div class="p-3 d-flex flex-column justify-content-between" style="min-height:700px;">
@@ -351,10 +350,34 @@ const showTeacherDashboard = async () => {
               </div>
             </div>
           </div>
+          <div class="card shadow-sm mt-4">
+  <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">مواعيد الحصص</h5>
+        <button id="addScheduleBtn" class="btn btn-light btn-sm fw-bold">+ إضافة موعد</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover align-middle text-center mb-0" id="scheduleTable">
+            <thead class="table-light">
+              <tr>
+                <th>اليوم</th>
+                <th>الوقت</th>
+                <th>الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="scheduleTableBody">
+              <tr><td colspan="3" class="text-muted">لا توجد مواعيد بعد.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
         </div>
       </div>
     </div>
   </div>
+
   `;
 
   document.title = `${sectionName} - لوحة المدرس`;
