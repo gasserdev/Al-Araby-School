@@ -4,50 +4,17 @@ const app = document.getElementById('app');
 
 const showHome = async () => {
   app.innerHTML = `
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#"> العربي للتكنولوجيا التطبيقية</a>
-        <button class="navbar-toggler noborder" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header justify-content-between">
-            <h5 class="offcanvas-title mx-3 fw-bold mb-0 flex-grow-1 text-truncate" id="offcanvasNavbarLabel">
-              مدرسة العربي
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 gap-2">
-
-              <li class="nav-item">
-                <a href="/create_account" class="nav-link  w-100 btn btn-light" style="width:120px;">حساب جديد</a>
-              </li>
-              <li class="nav-item">
-                <a href="/login" class="nav-link btn  w-100 btn-primary " style="width:120px;">تسجيل دخول</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <main>
-    <div class="container mb-5 w-100">
-      <div id='hero' class="d-flex justify-content-center gap-3 align-items-center flex-column">
-        <div class="d-flex flex-column justify-content-center text-center mt-5 align-content-center">
-          <h2 class="fs-2">مرحبًا بك في مدرسة العربي</h2>
-          <p class="fs-5">بوابتك إلى النمو والتعلم</p>
-        </div>
-        <div class="d-flex gap-2 flex-column">
-          <a href="/login" class="btn btn-primary" id="signInBtn">تسجيل دخول</a>
-          <a href="/create_account" class="btn btn-light mb-2" id="createAccountBtn" data-link>حساب جديد</a>
-        </div>
+  <main class="hero">
+    <div class="hero-content">
+      <h2 class="fs-1 fw-bold">مرحبًا بك في مدرسة العربي</h2>
+      <p class="fs-5 mb-4">طريقك إلى التميز والنجاح</p>
+      <div class="d-flex flex-column gap-3 align-items-center">
+        <a href="/login" class="btn btn-primary">تسجيل دخول</a>
+        <a href="/create_account" class="btn btn-light">حساب جديد</a>
       </div>
     </div>
   </main>
+
   `;
   await import("/src/JS/main.js").then(module => module.default());
 };

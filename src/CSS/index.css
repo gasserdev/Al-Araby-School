@@ -1,5 +1,5 @@
 #hero{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("/assets/images/hero.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("/public/assets/images/hero.jpg");
   height: 500px;
   border-radius: 20px;
   color: white;

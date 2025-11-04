@@ -6,7 +6,6 @@ export default async function initHODDashboard() {
   const API_URL = "https://raw.githubusercontent.com/gasserdev/Al-Araby-DB-test/refs/heads/main/users.json";
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // تحقق من صلاحيات الوصول
   if (!user || !user.isHOD) {
     document.body.innerHTML = `
       <h2 class='text-center mt-5 text-danger'>
